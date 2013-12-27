@@ -12,10 +12,20 @@
   <br/>
   <strong>About Me:</strong>
   <%= @page.message %>
-
-
- 
 </p>
+
+<%= form_for([@page, @post]) do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit :post %>
+<% end %>
+<br/>
+
+<% @page.posts.sort.reverse.each do |post| %>
+  <%= post.id %>
+	<%= post.body %>
+  <%= post.created_at %>
+	<br/>
+<% end %>
 
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %>

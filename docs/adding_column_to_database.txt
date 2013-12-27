@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+- To add column to a specific table in the database, we do a 'migration'
+
+Example: Add column 'like' to table 'posts';
+
+  1. Create a migration
+    rails g migration add_like_to_posts
+    edit the generated file and add the column:
+
+    class AddLikeToPosts < ActiveRecord::Migration
+      def change
+        add_column :posts, :likes, :boolean
+      end
+    end
+
+  2. Run the migration:
+    bundle exec rake db:migrate
+
+
