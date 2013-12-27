@@ -14,6 +14,11 @@
   <%= @page.message %>
 </p>
 
+<%= form_for(@page) do |f| %>
+  <%= f.select(:state, Page::STATES) %>
+  <%= f.submit :save %>
+<% end %>
+
 <%= form_for([@page, @post]) do |f| %>
   <%= f.text_area :body %>
   <%= f.submit :post %>
@@ -21,9 +26,9 @@
 <br/>
 
 <% @page.posts.sort.reverse.each do |post| %>
-  <%= post.id %>
 	<%= post.body %>
-  <%= post.created_at %>
+  <%= check_box_tag :likes %>  
+  <%= radio_button_tag :likes, 'true' %>
 	<br/>
 <% end %>
 
